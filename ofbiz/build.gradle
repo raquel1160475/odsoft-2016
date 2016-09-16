@@ -848,3 +848,10 @@ def getJarManifestClasspathForCurrentOs() {
     }
     return osClassPath
 }
+
+
+// Some new dependencies so that the GitInfo.ftl and SvnInfo.ftl are generated
+tasks.build.dependsOn(gitInfoFooter)
+tasks.build.dependsOn(svnInfoFooter)
+//----
+
