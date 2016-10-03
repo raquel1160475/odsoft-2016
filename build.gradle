@@ -1,0 +1,27 @@
+
+task task3
+task3.doFirst {println "This is task3"}
+
+
+task task1 << {println "This is task1"}
+task task2 << {println "This is task2"}
+task2.dependsOn task1
+task1.dependsOn task2
+
+
+task task4 << {println "This is task4"}
+task2.dependsOn task3
+task3.dependsOn task2
+
+task2.dependsOn task4
+task4.dependsOn task2
+
+
+task task52 << {println "This is task52"}
+task task51 << {println "This is task51"}
+
+task52.dependsOn task4
+task4.dependsOn task52
+
+task52.dependsOn task3
+task3.dependsOn task52
