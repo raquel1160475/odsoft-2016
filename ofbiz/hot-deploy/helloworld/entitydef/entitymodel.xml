@@ -8,5 +8,18 @@
     <description>None</description>
     <copyright></copyright>
     <version></version>
+<entity-name="helloworld"
+	title = "helloworld">
+<field name = "helloPersonId" type ="id-ne"></field>
+<field name = "firstName" type ="id"></field>
+<field name = "lastName" type ="id"></field>
+<field name = "comments" type ="comment"></field>
+<prim-key field ="helloPersonId"/>
+</entity>
 
+<entity entity-name="helloHobby">
+<field name = "helloHobbyId" type ="id-ne"></field>
+<field name = "description" type ="description"></field>
+<prim-key field ="helloHobbyid"/>
 </entitymodel>
+
