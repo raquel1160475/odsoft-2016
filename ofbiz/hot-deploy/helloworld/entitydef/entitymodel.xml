@@ -8,18 +8,62 @@
     <description>None</description>
     <copyright></copyright>
     <version></version>
-<entity-name="helloworld"
-	title = "helloworld">
-<field name = "helloPersonId" type ="id-ne"></field>
-<field name = "firstName" type ="id"></field>
-<field name = "lastName" type ="id"></field>
-<field name = "comments" type ="comment"></field>
-<prim-key field ="helloPersonId"/>
-</entity>
+    </entitymodel>
 
-<entity entity-name="helloHobby">
-<field name = "helloHobbyId" type ="id-ne"></field>
-<field name = "description" type ="description"></field>
-<prim-key field ="helloHobbyid"/>
-</entitymodel>
+<entity entity-name="Ingredient"
+ package-name="org.ofbiz.bakery"
+ title="One record for each ingredient that makes up a recipe">
+ <field name="ingredientId" type="id-ne"></field>
+ <field name="ingredientName" type="id"></field>
+ <field name="ingredientType" type="id"></field>
+ <field name="packagingUomId" type="id"></field>
+ <prim-key field="ingredientId"/>
+ <relation type="one" fk-name="REC_ING_UOM" rel-entity-name="Uom">
+ <key-map field-name="packagingUomId" rel-field-name="uomId"/>
+ </relation>
+ </entity>
 
+<entity entity-name="RecipeType"
+ package-name="org.ofbiz.bakery"
+ title="Recipes come in all shapes and sizes.
+ Keep that info here.">
+ <field name="recipeTypeId" type="id-ne"></field>
+ <field name="description" type="description"></field>
+ <prim-key field="recipeTypeId"/>
+ </entity>
+ <entity entity-name="Recipe"
+ package-name="org.ofbiz.bakery"
+ title="Recipe holds information about our recipes">
+ <field name="recipeId" type="id-ne"></field>
+ <field name="recipeName" type="id-long"></field>
+ <field name="recipeTypeId" type="id"></field>
+ <field name="notes" type="very-long"></field>
+ <prim-key field="recipeId"/>
+ <relation type="one" fk-name="REC_TO_TYPE"
+ rel-entity-name="RecipeType">
+ <key-map field-name="recipeTypeId"/>
+ </relation>
+ </entity>
+ 
+ <entity entity-name="RecipeIngredient" package-name="org.ofbiz.bakery"
+ title=
+ "A recipe is nothing more than a collection of ingredients.
+ Here’s where the rubber meets the road.">
+ <field name="recipeId" type="id-ne"></field>
+ <field name="recipeSeqNo" type="numeric"></field>
+ <field name="ingredientId" type="id-ne"></field>
+ <field name="amountUomId" type="id"></field>
+ <field name="amount" type="numeric"></field>
+ <field name="fromDate" type="date-time"></field>
+ <field name="thruDate" type="date-time"></field>
+ <prim-key field="recipeId"/>
+<prim-key field="recipeSeqNo"/>
+ <prim-key field="fromDate"/>
+ <relation type="one" fk-name="REC_ING_ING" rel-entity-name="Ingredient">
+ <key-map field-name="ingredientId"/>
+ </relation>
+ <relation type="one" fk-name="REC_AMT_UOM" rel-entity-name="Uom">
+ <key-map field-name="amountUomId" rel-field-name="uomId"/>
+ </relation>
+ </entity>
+ 

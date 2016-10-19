@@ -11,4 +11,11 @@
         </description>
     </service> 
     
+     <service name="createHelloWorld" default-entity-name="helloworld" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a Hello</description>
+        <permission-service service-name="commonGenericPermission" main-action="CREATE"/>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    
 </services>
